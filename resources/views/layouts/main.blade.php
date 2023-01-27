@@ -42,7 +42,7 @@
                                     <a class="nav-link" href="{{ url('/servicos') }}">Serviços</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('#') }}">Ordem de serviço</a>
+                                    <a class="nav-link" href="{{ url('/ordem-servicos') }}">Ordem de serviço</a>
                                 </li>
                             </ul>
                         </nav>                                

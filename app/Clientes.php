@@ -17,4 +17,15 @@ class Clientes extends Model
         'rua',
         'numero',
     ];
+
+
+    /**
+     * Relacionamento com a tabela ordemServiços
+     *
+     * @return void
+     */
+    public function servicos()
+    {
+        return $this->hasMany(OrdemServicos::class);
+    }
 }

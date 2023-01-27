@@ -48,7 +48,6 @@ class ClienteController extends Controller
                     <td>' . $cliente->bairro . '</td>
                     <td>' . $cliente->rua . '</td>                    
                     <td>
-                        <a href="#" id="#" class="text-primary mx-1 showIcon"><i class="bi-file-earmark-text h4"></i></a>
 
                         <a href="#" id="editClient" 
                             data-id="' . $cliente->id . '"

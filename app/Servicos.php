@@ -11,4 +11,15 @@ class Servicos extends Model
         'detalhes',
         'status',
     ];
+
+
+    /**
+     * Relacionamento com a tabela ordemServiços
+     *
+     * @return void
+     */
+    public function clientes()
+    {
+        return $this->hasMany(OrdemServicos::class);
+    }
 }

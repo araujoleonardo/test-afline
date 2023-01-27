@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\OrdemServicoController;
 use App\Http\Controllers\ServicoController;
 
 Route::get('/', function () {
@@ -21,3 +22,10 @@ Route::get('/getclientes', [ClienteController::class, 'getCliente'])->name('getC
 Route::post('/store', [ClienteController::class, 'store'])->name('storeClientes'); 
 Route::post('/delete/{id}', [ClienteController::class, 'delete'])->name('destroyClientes'); 
 Route::post('/updatecliente', [ClienteController::class, 'update'])->name('updateClientes');
+
+//Rotas OrdemServiços
+Route::get('/ordem-servicos', [OrdemServicoController::class, 'index'])->name('ordem-servicos');
+Route::get('/getOrdemServicos', [OrdemServicoController::class, 'getOrdemServicos'])->name('getOrdemServicos');
+Route::post('/storeOrdemServicos', [OrdemServicoController::class, 'store'])->name('storeOrdemServicos'); 
+Route::post('/deleteOrdemServicos/{id}', [OrdemServicoController::class, 'delete'])->name('destroyOrdemServicos'); 
+Route::post('/updateOrdemServicos', [OrdemServicoController::class, 'update'])->name('updateOrdemServicos');
