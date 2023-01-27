@@ -39,7 +39,10 @@
                                     <a class="nav-link" href="{{ url('/clientes') }}">Clientes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Serviços</a>
+                                    <a class="nav-link" href="{{ url('/servicos') }}">Serviços</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('#') }}">Ordem de serviço</a>
                                 </li>
                             </ul>
                         </nav>                                
@@ -61,6 +64,7 @@
         </div>
     </footer>
     @include('clientes.modalCliente')
+    @include('servicos.modalServico')
     <!-- JS Bootstrap + Jquery -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>

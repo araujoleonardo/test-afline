@@ -1,19 +1,19 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ServicoController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-//Rotas Students
-Route::get('/students', [StudentController::class, 'index']);
-Route::get('/getall', [StudentController::class, 'getStudent'])->name('getStudent');
-Route::post('/storestudents', [StudentController::class, 'store']); 
-Route::post('/destroystudents', [StudentController::class, 'destroy'])->name('destroy'); 
-Route::post('/updatestudents', [StudentController::class, 'update']);
+//Rotas Serviços
+Route::get('/servicos', [ServicoController::class, 'index'])->name('servicos');
+Route::get('/getservicos', [ServicoController::class, 'getServico'])->name('getServicos');
+Route::post('/storeservicos', [ServicoController::class, 'store'])->name('storeServicos'); 
+Route::post('/deleteservicos/{id}', [ServicoController::class, 'delete'])->name('destroyServicos'); 
+Route::post('/updateservicos', [ServicoController::class, 'update'])->name('updateServicos');
 
 //Rotas Clientes
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes');
