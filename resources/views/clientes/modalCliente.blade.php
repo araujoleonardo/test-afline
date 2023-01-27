@@ -48,7 +48,7 @@
                 <h5 class="modal-title" id="myModalLabel">Editar Aluno</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="action="{{ URL::to('updatecliente') }}"" id="editFormClient">
+            <form action="{{ route('updateClientes') }}" id="editFormClient">
                 @csrf
                 <div class="modal-body row g-3">
                     <input type="hidden" id="idCliente" name="id">
@@ -85,7 +85,7 @@
 
 
 <!-- Delete Modal -->
-<div class="modal fade" id="deleteClientModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmDialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -97,8 +97,8 @@
                 <h4 class="text-center">Tem certeza que deseja excluir?</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" id="deleteClientBtn" class="btn btn-danger">Deletar</button>
+                <button type="button" id="Cancelar" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" id="Excluir" class="btn btn-danger">Deletar</button>
             </div>
         </div>
     </div>

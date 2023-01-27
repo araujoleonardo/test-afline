@@ -48,6 +48,12 @@
                 success: function(){
                     $('#addnew').modal('hide');
                     $('#addForm')[0].reset();
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Cliente cadastrado com sucesso!',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
                     getClient();
                 }
             });
@@ -78,9 +84,14 @@
             var form = $(this).serialize();
             var url = $(this).attr('action');
 
-            $.post(url,form,function(data){
+            $.post(url, form, function(data) {
                 $('#editClientModal').modal('hide');
-                alert('Cliente alterado com sucesso!');
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Cliente alterado com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
                 getClient();
             })
         });
@@ -90,51 +101,43 @@
         $(document).on('click', '#deleteClient', function(event){
             event.preventDefault();
             var id = $(this).data('id');
-
-
-            deleteRecord(id);
-
-            function deleteRecord(id) {
-                $.ajax({
-                    url: '/delete/' + id,
-                    type: 'POST',
-                    data: {
-                        _token: '{!! csrf_token() !!}',
-                    },
-                    success: function(result) {
-                        // Handle successful deletion
-                        console.log(result);
-                        getClient();
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error
-                        console.log(error);
-                    }
-                });                
-            }
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "Você não poderá reverter isso!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    deleteRecord(id);
+                    Swal.fire(
+                        'Excluído!',
+                        'O cliente foi excluído com sucesso.',
+                        'success'
+                    )
+                }
+            })
         });
 
-        
-        // $(document).on('click', '#deleteClient', function(e){
-        //     e.preventDefault();
-        //     var id = $(this).data('id');
-
-        //     $('#deleteClientModal').modal('show');
-
-        //     $('#idClienteDel').val(id);
-        // });
-        
-        // $('#deleteFormClient').on('submit', function(e){
-        //     e.preventDefault();
-        //     var form = $(this).serialize();
-        //     var url = $(this).attr('action');
-
-        //     $.post(url,form,function(data){
-        //         $('#deleteClientModal').modal('hide');
-        //         alert('Cliente excluido com sucesso!');
-        //         getClient();
-        //     })
-        // });
+        function deleteRecord(id) {
+            $.ajax({
+                url: '/delete/' + id,
+                type: 'POST',
+                data: {
+                    _token: '{!! csrf_token() !!}',
+                },
+                success: function(result) {
+                    getClient();
+                },
+                error: function(xhr, status, error) {
+                    // Error
+                    console.log(error);
+                }
+            });                
+        }
         //---------
 
         function getClient() {
