@@ -39,7 +39,7 @@
                                     <a class="nav-link" href="{{ url('/clientes') }}">Clientes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Serviços</a>
+                                    <a class="nav-link" href="">Serviços</a>
                                 </li>
                             </ul>
                         </nav>                                
@@ -60,7 +60,7 @@
             © 2023 Copyright | Todos os direitos reservados
         </div>
     </footer>
-
+    @include('clientes.modalCliente')
     <!-- JS Bootstrap + Jquery -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>

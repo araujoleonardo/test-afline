@@ -9,22 +9,20 @@
 
 @section('content')    
     
-    <div class="card shadow">
-        <div class="card-header bg-info d-flex justify-content-between align-items-center">
-            <h3 class="text-light">Listagem de alunos</h3>
-            <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addnew">
+    <div class="card shadow m-5">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h3 class="text-primary">Listagem de Clientes</h3>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addnew">
                 <i class="bi bi-plus-circle"></i>
-                Cadastrar Aluno
+                Novo Cliente
             </button>
         </div>
         <div class="card-body" id="show_all_alunos">
-            <h1 class="text-center text-secondary my-5">Loading...</h1>
+            <h1 class="text-center text-secondary my-5">Carregando...</h1>
         </div>
     </div>   
 
 @endsection
-
-@include('clientes.modalCliente')
 
 @section('js')
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
@@ -64,18 +62,26 @@
         $(document).on('click', '#editClient', function(e){
             e.preventDefault();
             var id = $(this).data('id');
-            var name = $(this).data('name');
+            var nome = $(this).data('nome');
             var email = $(this).data('email');
-            var cpf = $(this).data('cpf');
-            var municipio = $(this).data('municipio');
             var telefone = $(this).data('telefone');
+            var estado = $(this).data('estado');
+            var cidade = $(this).data('cidade');
+            var cep = $(this).data('cep');
+            var bairro = $(this).data('bairro');
+            var rua = $(this).data('rua');
+            var numero = $(this).data('numero');
 
             $('#editClientModal').modal('show');
-            $('#name').val(name);
+            $('#nome').val(nome);
             $('#email').val(email);
-            $('#cpf').val(cpf);
-            $('#municipio').val(municipio);
             $('#telefone').val(telefone);
+            $('#estado').val(estado);
+            $('#cidade').val(cidade);
+            $('#cep').val(cep);
+            $('#bairro').val(bairro);
+            $('#rua').val(rua);
+            $('#numero').val(numero);
             $('#idCliente').val(id);
         });
 
