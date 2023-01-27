@@ -82,24 +82,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- Delete Modal -->
-<div class="modal fade" id="confirmDialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Deletar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input id="idClienteDel" name="id">
-                <h4 class="text-center">Tem certeza que deseja excluir?</h4>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="Cancelar" class="btn btn-secondary">Cancelar</button>
-                <button type="submit" id="Excluir" class="btn btn-danger">Deletar</button>
-            </div>
-        </div>
-    </div>
-</div>
