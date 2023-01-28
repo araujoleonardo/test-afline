@@ -16,7 +16,11 @@ class OrdemServicoController extends Controller
      */
     public function index()
     {
-        return view('ordemServicos.indexOrdemServicos');
+        $ordems = OrdemServicos::get();
+        $clientes = Clientes::get();
+        $servicos = Servicos::get();
+
+        return view('ordemServicos.indexOrdemServicos', compact('clientes', 'servicos', 'ordems'));
     }
 
     public function getOrdemServicos()
@@ -46,16 +50,13 @@ class OrdemServicoController extends Controller
 				$output .= '<tr>
                     <td>' . $nomeCliente . '</td>
                     <td>' . $nomeServico . '</td>
-                    <td>' . $ordem->abertura . '</td>
+                    <td>' . date("d/m/Y", strtotime($ordem->abertura)) . '</td>
                     <td>' . $ordem->observacao . '</td>                   
                     <td>
 
-                        <a href="#" id="editClient" 
-                            data-id="' . $ordem->id . '"
-                        class="text-success mx-1 editIcon" data-bs-toggle="modal" 
-                        data-bs-target="#editClient"><i class="bi-pencil-square h4"></i></a>
+                        <a href="#" id="viewOrdemServico" class="text-primary mx-1" data-bs-toggle="modal" data-bs-target="#viewOrdemServico' . $ordem->id . '"><i class="bi-file-earmark-text h4"></i></a>
 
-                        <a href="#" id="deleteClient" data-id="' . $ordem->id . '" class="text-danger mx-1 deleteIcon" data-bs-target="#deleteClient"><i class="bi-trash h4"></i></a>
+                        <a href="#" id="deleteOrdemServico" data-id="' . $ordem->id . '" class="text-danger mx-1 deleteIcon" data-bs-target="#deleteOrdemServico"><i class="bi-trash h4"></i></a>
                     </td>
                 </tr>';
 			}
@@ -84,7 +85,17 @@ class OrdemServicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            // Create New
+            $ordem = OrdemServicos::create([
+                'cliente_id' => $request->nome_cliente,
+                'servico_id' => $request->nome_servico,
+                'abertura' => $request->abertura,
+                'observacao' => $request->observacao,
+            ]);
+
+            return response($ordem);
+        }
     }
 
     /**
@@ -127,8 +138,10 @@ class OrdemServicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        OrdemServicos::find($id)->delete();
+
+        return response()->json(['success' => 'Ordem de serviço excluída com  successo!']);
     }
 }

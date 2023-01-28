@@ -21,6 +21,7 @@ class CreateOrdemServicosTable extends Migration
             $table->text('observacao');
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->foreign('servico_id')->references('id')->on('servicos')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

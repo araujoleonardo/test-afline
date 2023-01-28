@@ -1,0 +1,8 @@
+.navbar ul li {
+    border-bottom: 4px solid #4876FF;
+    margin-right: 10px;
+}
+
+.modal-open {
+    padding: 0 !important;
+}

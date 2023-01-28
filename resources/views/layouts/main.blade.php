@@ -7,18 +7,14 @@
     <title>@yield('title')</title>
     @yield('css')
 
-    <!-- CSS Bootstrap -->
+    {{-- CSS Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Icons -->
+    {{-- Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
-    <style>
-        .navbar ul li {
-            border-bottom: 4px solid #4876FF;
-            margin-right: 10px;
-        }
-    </style>
+    {{-- css aplication --}}
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -29,8 +25,8 @@
         <div class="row bg-light">
             <div class="col rounded-3 border shadow text-end m-2 p-2">
                 <nav class="container-fluid navbar">
-                    <a href="{{ url('/home') }}" class="nav-link link-light p-0 pl-2">
-                        <h5>Sistema</h5>
+                    <a href="{{ url('/') }}" class="nav-item p-0 pl-2">
+                        <i class="bi bi-house-fill h1"></i>
                     </a>
                     <div class="d-flex">                        
                         <nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -56,18 +52,19 @@
                 @yield('content')
             </div>
         </div>
-    </div>
 
-    <footer class="bg-white text-center fixed-bottom">
-        <div class="rounded-3 border shadow m-2 text-center p-3">
-            © 2023 Copyright | Todos os direitos reservados
-        </div>
-    </footer>
+        <footer class="row bg-white text-center" style="height: 100px">
+            <div class="col rounded-3 border shadow m-2 d-flex align-items-center justify-content-center">
+                <p>© 2023 Copyright | Todos os direitos reservados</p>
+            </div>
+        </footer>
+    </div>
     @include('clientes.modalCliente')
     @include('servicos.modalServico')
+    
     <!-- JS Bootstrap + Jquery -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
     <!-- Ajax -->
     @yield('js')
 </body>

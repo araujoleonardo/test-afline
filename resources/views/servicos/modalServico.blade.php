@@ -10,21 +10,31 @@
                 @csrf
                 <div class="modal-body row g-3">
                     <div class="mb-3 col-md-8">
-                        <label for="nome">Nome</label>
+                        <label for="nome" class="form-label">Nome do serviço</label>
                         <input type="text" name="nome" class="form-control" required>
                     </div>
                     <div class="mb-3 col-md-4">
-                        <label for="status">Status</label>
-                        <input type="text" name="status" class="form-control" required>
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
+                            <option value="Inativo" @if (old('status') == 'Inativo') selected @endif>
+                                Inativo
+                            </option>
+                            <option value="Ativo" @if (old('status') == 'Ativo') selected @endif>
+                                Ativo
+                            </option>
+                        </select>
+                        @error('status')
+                            <small class="invalid-feedback fw-bold">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="mb-3 col-md-12">
-                        <label for="detalhes">Detalhes do serviço</label>
+                        <label for="detalhes" class="form-label">Detalhes do serviço</label>
                         <textarea name="detalhes" cols="30" rows="10" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" id="add_aluno_btn" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </form>
         </div>
@@ -45,15 +55,25 @@
                 <div class="modal-body row g-3">
                     <input type="hidden" id="idService" name="id">
                     <div class="mb-3 col-md-8">
-                        <label for="nome">Nome</label>
+                        <label for="nome" class="form-label">Nome</label>
                         <input type="text" name="nome" id="name" class="form-control" required>
                     </div>
                     <div class="mb-3 col-md-4">
-                        <label for="status">Status</label>
-                        <input type="text" name="status" id="status" class="form-control" required>
+                        <label for="status" class="form-label" id="status">Status</label>
+                        <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
+                            <option value="Inativo" @if (old('status') == 'Inativo') selected @endif>
+                                Inativo
+                            </option>
+                            <option value="Ativo" @if (old('status') == 'Ativo') selected @endif>
+                                Ativo
+                            </option>
+                        </select>
+                        @error('status')
+                            <small class="invalid-feedback fw-bold">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="mb-3 col-md-12">
-                        <label for="detalhes">Detalhes do serviço</label>
+                        <label for="detalhes" class="form-label">Detalhes do serviço</label>
                         <textarea name="detalhes" id="detalhes" cols="30" rows="10" class="form-control" required></textarea>
                     </div>
                 </div>

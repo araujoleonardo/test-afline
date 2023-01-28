@@ -34,9 +34,8 @@ class ServicoController extends Controller
 			foreach ($servicos as $servico) {
 				$output .= '<tr>
                     <td>' . $servico->nome . '</td>
-                    <td>' . $servico->status . '</td>                   
+                    <th>' . $servico->status . '</th>
                     <td>
-                        <a href="#" id="#" class="text-primary mx-1 showIcon"><i class="bi-file-earmark-text h4"></i></a>
 
                         <a href="#" id="editService" 
                             data-id="' . $servico->id . '"
