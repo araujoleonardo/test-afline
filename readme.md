@@ -1,30 +1,30 @@
-### Teste Laravel
+## Teste Laravel
 
 Aplicação desenvolvida em Laravel da versão 5.8 + PHP 7.2 + MySQL 5
 
-### Instruções
+## Instruções
 
-## Clonando o projeto
+### Clonando o projeto
 ```
 git clone git@github.com:seuprojeto
 ```
-## Acesse o projeto
+### Acesse o projeto
 ```
 cd seuprojeto
 ```
-## Instale as dependências e o framework
+### Instale as dependências e o framework
 composer install --no-scripts
 
-## Copie o arquivo .env.example
+### Copie o arquivo .env.example
 ```
 cp .env.example .env
 ```
 
-## Crie uma nova chave para a aplicação
+### Crie uma nova chave para a aplicação
 ```
 php artisan key:generate
 ```
-## Em seguida você deve configurar o arquivo .env e rodar as migrations com:
+### Em seguida você deve configurar o arquivo .env e rodar as migrations com:
 ```
 php artisan migrate --seed
 ```
