@@ -94,17 +94,17 @@ class ClienteController extends Controller
     {
         if ($request->ajax()) {
             // Validações
-            // $request->validate([
-            //     'nome' => ['required', 'string', 'min:3', 'max:255'],
-            //     'telefone' => ['required', 'celular_com_ddd'],
-            //     'email' => ['required', 'string', 'email', 'max:255', 'unique'],
-            //     'estado' => ['required', 'uf', 'max:2'],
-            //     'cidade' => ['required', 'string', 'max:255'],
-            //     'cep' => ['required', 'formato_cep'],
-            //     'bairro' => ['required', 'string', 'max:255'],
-            //     'rua' => ['required', 'string', 'max:255'],
-            //     'numero' => ['required', 'string', 'max:255'],
-            // ]);
+            $request->validate([
+                'nome' => ['required', 'string', 'min:3', 'max:255'],
+                'telefone' => ['required', 'max: 255'],
+                'email' => ['required', 'max: 255'],
+                'estado' => ['required', 'string', 'max:255'],
+                'cidade' => ['required', 'string', 'min:3', 'max:255'],
+                'cep' => ['required', 'string', 'min:8', 'max:255'],
+                'bairro' => ['required', 'string', 'min:3', 'max:255'],
+                'rua' => ['required', 'string', 'min:3', 'max:255'],
+                'numero' => ['string', 'max:255'],
+            ]);
 
             // Create New
             $cliente = new Clientes();
@@ -157,6 +157,18 @@ class ClienteController extends Controller
     public function update(Request $request)
     {
         if ($request->ajax()) {
+            // Validações
+            $request->validate([
+                'nome' => ['required', 'string', 'min:3', 'max:255'],
+                'telefone' => ['required', 'max: 255'],
+                'email' => ['required', 'max: 255'],
+                'estado' => ['required', 'string', 'max:255'],
+                'cidade' => ['required', 'string', 'min:3', 'max:255'],
+                'cep' => ['required', 'string', 'min:8', 'max:255'],
+                'bairro' => ['required', 'string', 'min:3', 'max:255'],
+                'rua' => ['required', 'string', 'min:3', 'max:255'],
+                'numero' => ['string', 'max:255'],
+            ]);
             $cliente = Clientes::find($request->id);
             $cliente->nome = $request->input('nome');
             $cliente->email = $request->input('email');

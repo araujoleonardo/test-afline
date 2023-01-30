@@ -37,8 +37,8 @@
             //Função salvar
             $('#addFormOrdemServico').on('submit', function(e){
                 e.preventDefault();
-                var form = $(this).serialize();
-                var url = $(this).attr('action');
+                let form = $(this).serialize();
+                let url = $(this).attr('action');
                     $.ajax({
                     type: 'POST',
                     url: url,
@@ -66,26 +66,48 @@
             //----------
 
             //Função Detalhes
-            // $(document).on('click', '#editService', function(e){
-            //     e.preventDefault();
-            //     var id = $(this).data('id');
-            //     var nome = $(this).data('nome');
-            //     var status = $(this).data('status');
-            //     var detalhes = $(this).data('detalhes');
+            $(document).on('click', '#verOrdemServico', function(e){
+                e.preventDefault();
+                let idOrdem = $(this).data('id');
+                let abertura = $(this).data('abertura');
+                let observacao = $(this).data('observacao');
+                let nomeCliente = $(this).data('cliente');
+                let nomeServico = $(this).data('servico');
+                let detalhes = $(this).data('detalhes');
+                let email = $(this).data('email');
+                let telefone = $(this).data('telefone');
+                let estado = $(this).data('estado');
+                let cidade = $(this).data('cidade');
+                let cep = $(this).data('cep');
+                let bairro = $(this).data('bairro');
+                let rua = $(this).data('rua');
+                let numero = $(this).data('numero');
 
-            //     $('#editServiceModal').modal('show');
-            //     $($nome).val(nome);
-            //     $('#status').val(status);
-            //     $('#detalhes').val(detalhes);
-            //     $('#idService').val(id);
-            // });
+                $('#viewOrdemServico').modal('show');
+                $('#idOrdem').text(idOrdem);
+                var data = new Date(abertura);
+                var dataFormatada = data.toLocaleDateString('pt-BR');
+                $('#abertura').text(dataFormatada);
+                $('#observacao').text(observacao);
+                $('#nomeCliente').text(nomeCliente);
+                $('#nomeServico').text(nomeServico);
+                $('#email').text(email);
+                $('#telefone').text(telefone);
+                $('#estado').text(estado);
+                $('#cidade').text(cidade);
+                $('#cep').text(cep);
+                $('#bairro').text(bairro);
+                $('#rua').text(rua);
+                $('#numero').text(numero);
+                $('#detalhes').text(detalhes);
+            });
 
             //---------
 
             //Função deletar
             $(document).on('click', '#deleteOrdemServico', function(event){
                 event.preventDefault();
-                var id = $(this).data('id');
+                let id = $(this).data('id');
                 Swal.fire({
                     title: 'Tem certeza?',
                     text: "Você não poderá reverter isso!",

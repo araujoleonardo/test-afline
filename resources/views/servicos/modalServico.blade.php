@@ -12,7 +12,10 @@
 
                     <div class="mb-3 col-md-8">
                         <label for="nome" class="form-label">Nome do serviço</label>
-                        <input type="text" name="nome" id="nomeServicoAdd" class="form-control">
+                        <input type="text" name="nome" id="nomeServicoAdd" class="form-control @error('nome') is-invalid @enderror" value="{{ old('nome') }}" required>
+                        @error('nome')
+                            <small class="invalid-feedback fw-bold">{{ $message }}</small>
+                        @enderror 
                         <span class="span-addServico">Mínimo 3 caracteres</span>
                     </div>
 
@@ -55,8 +58,11 @@
                     <input type="hidden" id="idService" name="id">
 
                     <div class="mb-3 col-md-8">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" name="nome" id="nomeServicoEdit" class="form-control">
+                        <label id="nomeServicoText" class="form-label">Nome</label>
+                        <input type="text" name="nome" id="nomeServicoEdit" class="form-control @error('nome') is-invalid @enderror" value="{{ old('nome') }}" required>
+                        @error('nome')
+                            <small class="invalid-feedback fw-bold">{{ $message }}</small>
+                        @enderror 
                         <span class="span-editServico">Mínimo 3 caracteres</span>
                     </div>
                     

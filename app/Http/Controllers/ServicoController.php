@@ -75,6 +75,12 @@ class ServicoController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
+            // Validações
+            $request->validate([
+                'nome' => ['required', 'string', 'min:3', 'max:255'],
+                'status' => ['required', 'string', 'min:3', 'max:255'],
+                'detalhes' => ['string'],
+            ]);
             // Create New
             $servico = new Servicos();
             $servico->nome = $request->input('nome');
@@ -120,6 +126,12 @@ class ServicoController extends Controller
     public function update(Request $request)
     {
         if ($request->ajax()) {
+            // Validações
+            $request->validate([
+                'nome' => ['required', 'string', 'min:3', 'max:255'],
+                'status' => ['required', 'string', 'min:3', 'max:255'],
+                'detalhes' => ['string'],
+            ]);
             $servico = Servicos::find($request->id);
             $servico->nome = $request->input('nome');
             $servico->status = $request->input('status');

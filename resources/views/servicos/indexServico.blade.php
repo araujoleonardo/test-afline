@@ -37,8 +37,8 @@
         //Função salvar
         $('#addFormService').on('submit', function(e){
             e.preventDefault();
-            var form = $(this).serialize();
-            var url = $(this).attr('action');
+            let form = $(this).serialize();
+            let url = $(this).attr('action');
             let nome = $("#nomeServicoAdd").val();
 
             const spans  = document.querySelectorAll('.span-addServico');
@@ -72,10 +72,10 @@
         //Função editar
         $(document).on('click', '#editService', function(e){
             e.preventDefault();
-            var id = $(this).data('id');
-            var nome = $(this).data('nome');
-            var status = $(this).data('status');
-            var detalhes = $(this).data('detalhes');
+            let id = $(this).data('id');
+            let nome = $(this).data('nome');
+            let status = $(this).data('status');
+            let detalhes = $(this).data('detalhes');
 
             $('#editServiceModal').modal('show');
             $('#nomeServicoEdit').val(nome);
@@ -86,8 +86,8 @@
 
         $('#editFormService').on('submit', function(e){
             e.preventDefault();
-            var form = $(this).serialize();
-            var url = $(this).attr('action');
+            let form = $(this).serialize();
+            let url = $(this).attr('action');
             let nome = $("#nomeServicoEdit").val();
 
             const spans  = document.querySelectorAll('.span-editServico');
@@ -114,7 +114,7 @@
         //Função deletar
         $(document).on('click', '#deleteService', function(event){
             event.preventDefault();
-            var id = $(this).data('id');
+            let id = $(this).data('id');
             Swal.fire({
                 title: 'Tem certeza?',
                 text: "Você não poderá reverter isso!",

@@ -13,3 +13,8 @@ span{
     color: rgb(245, 6, 6);
     display: none;
 }
+
+.detalhes {
+    border: 1px solid rgb(197, 195, 195);
+    border-style: none none dotted none;
+}

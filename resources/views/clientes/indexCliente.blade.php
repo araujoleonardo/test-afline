@@ -26,11 +26,17 @@
 
 @section('js')
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function(){
 
         getClient()
+
+        $('#telefoneAdd').mask('(00) 00000-0000');
+        $('#telefoneEdit').mask('(00) 00000-0000');
+        $('#cepAdd').mask('00000-000');
+        $('#cepEdit').mask('00000-000');
 
         //Função salvar
         $('#addForm').on('submit', function(e){
@@ -61,7 +67,7 @@
                 return false;
             }
 
-            let telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+            let telefoneRegex = /^\(?\d{2}\)?[\s-]?\d{5}-\d{4}$/;
             if (!telefoneRegex.test(telefone)) {
                 document.getElementById("telefoneAdd").style.border = "2px solid red";
                 spans[2].style.display = 'block';                

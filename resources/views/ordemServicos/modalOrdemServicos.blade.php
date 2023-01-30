@@ -13,16 +13,16 @@
                     <div class="mb-3 col-md-12">
                         <label class="form-label" for="nome_servico">Nome do serviço</label>
                         <select class="form-select @error('nome_servico') is-invalid @enderror" name="nome_servico" id="nome_servico" required>
-                            @if ($servicos->toArray())
+                            <?php $ativo = $servicos->where('status', 'Ativo'); ?>
+                            @if ($ativo->toArray())
                                 <option value="" selected>Selecione o serviço</option>
                             @else
-                                <option value="" class="text-danger">Não existem serviços cadastrados</option>
-                            @endif
-                            @foreach ($servicos as $servico)
-                                <option value="{{ $servico->id }}"
-                                    @if (old('nome_servico') == $servico->id) selected @endif>
-                                    {{ $servico->nome }}
-                                </option>
+                                <option value="" class="text-danger">Não existem serviços ativos cadastrados</option>
+                            @endif                            
+                            @foreach ($ativo as $servico)
+                                    <option value="{{ $servico->id }}" @if (old('nome_servico') == $servico->id) selected @endif >
+                                        {{ $servico->nome }}
+                                    </option>                                   
                             @endforeach
                         </select>
                         @error('turma')
@@ -52,7 +52,10 @@
 
                     <div class="mb-3 col-md-4">
                         <label class="form-label" for="abertura">Data de abertura</label>
-                        <input type="date" name="abertura" class="form-control" required>
+                        <input type="date" name="abertura" class="form-control @error('abertura') is-invalid @enderror" value="{{ old('abertura') }}" required>
+                        @error('abertura')
+                            <small class="invalid-feedback fw-bold">{{ $message }}</small>
+                        @enderror 
                     </div>
 
                     <div class="mb-3 col-md-12">
@@ -72,75 +75,65 @@
 
 
 <!-- Modal Detalhes-->
-@foreach ($ordems as $ordem)
-    <div class="modal fade bg-white viewOrdemServico" data-bs-backdrop="static" id="viewOrdemServico{{$ordem->id}}" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade bg-white viewOrdemServico" data-bs-backdrop="static" id="viewOrdemServico" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg bg-light">
             <div class="modal-content">
                 <div class="modal-body row g-3">
 
-                    <div class="mb-3 col-md-6">
+                    <div class="col-md-6 detalhes">
                         <label class="form-label text-primary fw-bold">Nome do serviço:</label><br>
-                        <?php $nomeServico = $servicos->find($ordem->servico_id)->nome;?>
-                        {{ $nomeServico }}                                                
+                        <label class="form-label" id="nomeServico"></label>
                     </div>
 
-                    <div class="mb-3 col-md-6">
+                    <div class="col-md-6 detalhes">
                         <label class="form-label text-primary fw-bold">Data de abertura:</label><br>
-                        {{ date('d-m-Y', strtotime($ordem->abertura)) }}
+                        <label class="form-label" id="abertura"></label>
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="col-md-12 detalhes">
                         <label class="form-label text-primary fw-bold">Detalhes do serviço:</label><br>
-                        <?php $detalhesServico = $servicos->find($ordem->servico_id)->detalhes;?>
-                        {{ $detalhesServico }} 
+                        <label class="form-label" id="detalhes"></label>
                     </div>
 
-                    <div class="mb-3 col-md-6">
+                    <div class="col-md-6 detalhes">
                         <label class="form-label text-primary fw-bold">Nome do cliente:</label><br>
-                        <?php $nomeCliente = $clientes->find($ordem->servico_id)->nome;?>
-                        {{ $nomeCliente }} 
+                        <label class="form-label" id="nomeCliente"></label>
                     </div>
 
-                    <div class="mb-3 col-md-6">
+                    <div class="col-md-6 detalhes">
                         <label class="form-label text-primary fw-bold">Email do Cliente:</label><br>
-                        <?php $emailCliente = $clientes->find($ordem->servico_id)->email;?>
-                        {{ $emailCliente }} 
+                        <label class="form-label" id="email"></label>
                     </div>
 
-                    <div class="mb-3 col-md-4">
+                    <div class="col-md-4 detalhes">
                         <label class="form-label text-primary fw-bold">Telefone do Cliente:</label><br>
-                        <?php $telefoneCliente = $clientes->find($ordem->servico_id)->telefone;?>
-                        {{ $telefoneCliente }}
+                        <label class="form-label" id="telefone"></label>
                     </div>
 
-                    <div class="mb-3 col-md-4">
+                    <div class="col-md-4 detalhes">
                         <label class="form-label text-primary fw-bold">Cidade do Cliente:</label><br>
-                        <?php $cidadeCliente = $clientes->find($ordem->servico_id)->cidade;?>
-                        {{ $cidadeCliente }}
+                        <label class="form-label" id="cidade"></label>
                     </div>
 
-                    <div class="mb-3 col-md-4">
+                    <div class="col-md-4 detalhes">
                         <label class="form-label text-primary fw-bold">Cep do Cliente:</label><br>
-                        <?php $cepCliente = $clientes->find($ordem->servico_id)->cep;?>
-                        {{ $cepCliente }}
+                        <label class="form-label" id="cep"></label>
                     </div>
 
-                    <div class="mb-3 col-md-6">
+                    <div class="col-md-6 detalhes">
                         <label class="form-label text-primary fw-bold">Bairro do Cliente:</label><br>
-                        <?php $bairroCliente = $clientes->find($ordem->servico_id)->bairro;?>
-                        {{ $bairroCliente }}
+                        <label class="form-label" id="bairro"></label>
                     </div>
 
-                    <div class="mb-3 col-md-6">
+                    <div class="col-md-6 detalhes">
                         <label class="form-label text-primary fw-bold">Endereço do Cliente:</label><br>
-                        <?php $ruaCliente = $clientes->find($ordem->servico_id)->rua;?>
-                        <?php $numeroCliente = $clientes->find($ordem->servico_id)->numero;?>
-                        {{ $ruaCliente }}, {{ $numeroCliente }}
+                        <label class="form-label" id="rua"></label>, 
+                        <label class="form-label" id="numero"></label>
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="col-md-12 detalhes">
                         <label class="form-label text-primary fw-bold">Observações:</label><br>
-                        {{ $ordem->observacao }}
+                        <label class="form-label" id="observacao"></label>
                     </div>
 
                 </div>
@@ -150,5 +143,4 @@
             </div>
         </div>
     </div>
-@endforeach
 

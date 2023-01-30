@@ -16,11 +16,10 @@ class OrdemServicoController extends Controller
      */
     public function index()
     {
-        $ordems = OrdemServicos::get();
         $clientes = Clientes::get();
         $servicos = Servicos::get();
 
-        return view('ordemServicos.indexOrdemServicos', compact('clientes', 'servicos', 'ordems'));
+        return view('ordemServicos.indexOrdemServicos', compact('clientes', 'servicos'));
     }
 
     public function getOrdemServicos()
@@ -42,19 +41,31 @@ class OrdemServicoController extends Controller
             </thead>
             <tbody>';
 			foreach ($ordems as $ordem) {
-                $cliente = $clientes->Where('id', $ordem->cliente_id);
-                $nomeCliente = $cliente->first()->nome;
-                $servico = $servicos->Where('id', $ordem->servico_id);
-                $nomeServico = $servico->first()->nome;
+                $cliente = $clientes->find($ordem->cliente_id);
+                $servico = $servicos->find($ordem->servico_id);
 
 				$output .= '<tr>
-                    <td>' . $nomeCliente . '</td>
-                    <td>' . $nomeServico . '</td>
+                    <td>' . $cliente->nome . '</td>
+                    <td>' . $servico->nome . '</td>
                     <td>' . date("d/m/Y", strtotime($ordem->abertura)) . '</td>
                     <td>' . $ordem->observacao . '</td>                   
                     <td>
-
-                        <a href="#" id="viewOrdemServico" class="text-primary mx-1" data-bs-toggle="modal" data-bs-target="#viewOrdemServico' . $ordem->id . '"><i class="bi-file-earmark-text h4"></i></a>
+                        <a href="#" id="verOrdemServico"
+                            data-id="' . $ordem->id . '"
+                            data-abertura="' . $ordem->abertura . '"
+                            data-observacao="' . $ordem->observacao . '"
+                            data-servico="' . $servico->nome . '"
+                            data-detalhes="' . $servico->detalhes . '"
+                            data-cliente="' . $cliente->nome . '"
+                            data-email="' . $cliente->email . '"
+                            data-telefone="' . $cliente->telefone . '"
+                            data-estado="' . $cliente->estado . '"
+                            data-cidade="' . $cliente->cidade . '"
+                            data-cep="' . $cliente->cep . '"
+                            data-bairro="' . $cliente->bairro . '"
+                            data-rua="' . $cliente->rua . '"
+                            data-numero="' . $cliente->numero . '"
+                        class="text-primary mx-1" data-bs-toggle="modal" data-bs-target="#viewOrdemServico"><i class="bi-file-earmark-text h4"></i></a>
 
                         <a href="#" id="deleteOrdemServico" data-id="' . $ordem->id . '" class="text-danger mx-1 deleteIcon" data-bs-target="#deleteOrdemServico"><i class="bi-trash h4"></i></a>
                     </td>
