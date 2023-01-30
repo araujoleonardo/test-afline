@@ -15,9 +15,9 @@ class CreateOrdemServicosTable extends Migration
     {
         Schema::create('ordem_servicos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('cliente_id');
-            $table->unsignedBigInteger('servico_id');
-            $table->date('abertura');
+            $table->unsignedBigInteger('cliente_id')->nullable();
+            $table->unsignedBigInteger('servico_id')->nullable();
+            $table->date('abertura')->nullable();
             $table->text('observacao');
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->foreign('servico_id')->references('id')->on('servicos')->onDelete('cascade');

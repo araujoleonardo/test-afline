@@ -93,6 +93,19 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
+            // Validações
+            // $request->validate([
+            //     'nome' => ['required', 'string', 'min:3', 'max:255'],
+            //     'telefone' => ['required', 'celular_com_ddd'],
+            //     'email' => ['required', 'string', 'email', 'max:255', 'unique'],
+            //     'estado' => ['required', 'uf', 'max:2'],
+            //     'cidade' => ['required', 'string', 'max:255'],
+            //     'cep' => ['required', 'formato_cep'],
+            //     'bairro' => ['required', 'string', 'max:255'],
+            //     'rua' => ['required', 'string', 'max:255'],
+            //     'numero' => ['required', 'string', 'max:255'],
+            // ]);
+
             // Create New
             $cliente = new Clientes();
             $cliente->nome = $request->input('nome');

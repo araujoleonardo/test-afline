@@ -1,5 +1,5 @@
 <!-- Modal cadastrar-->
-<div class="modal fade p-0 m-0" id="addnewOrdemServico" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade p-0 m-0" id="addnewOrdemServico" data-bs-backdrop="static" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg bg-ligth">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,12 +11,13 @@
                 <div class="modal-body row g-3">
 
                     <div class="mb-3 col-md-12">
-                        <label class="form-label for="nome_servico">Nome do serviço</label>
+                        <label class="form-label" for="nome_servico">Nome do serviço</label>
                         <select class="form-select @error('nome_servico') is-invalid @enderror" name="nome_servico" id="nome_servico" required>
-                            <option value="" selected>Selecione o serviço</option>
-                            @empty($servicos->toArray())
-                                <option value="" class="text-danger">Não há serviços cadastrado</option>
-                            @endempty
+                            @if ($servicos->toArray())
+                                <option value="" selected>Selecione o serviço</option>
+                            @else
+                                <option value="" class="text-danger">Não existem serviços cadastrados</option>
+                            @endif
                             @foreach ($servicos as $servico)
                                 <option value="{{ $servico->id }}"
                                     @if (old('nome_servico') == $servico->id) selected @endif>
@@ -30,12 +31,13 @@
                     </div>
 
                     <div class="mb-3 col-md-8">
-                        <label class="form-label for="nome_cliente">Nome do cliente</label>
+                        <label class="form-label" for="nome_cliente">Nome do cliente</label>
                         <select class="form-select @error('nome_cliente') is-invalid @enderror" name="nome_cliente" id="nome_cliente" required>
-                            <option value="" selected>Selecione o cliente</option>
-                            @empty($clientes->toArray())
-                                <option value="" class="text-danger">Não há clientes cadastrado</option>
-                            @endempty
+                            @if ($clientes->toArray())
+                                <option value="" selected>Selecione o cliente</option>
+                            @else
+                                <option value="" class="text-danger">Não existem clientes cadastrados</option>
+                            @endif
                             @foreach ($clientes as $cliente)
                                 <option value="{{ $cliente->id }}"
                                     @if (old('nome_cliente') == $cliente->id) selected @endif>
@@ -49,13 +51,13 @@
                     </div>
 
                     <div class="mb-3 col-md-4">
-                        <label class="form-label for="abertura">Data de abertura</label>
+                        <label class="form-label" for="abertura">Data de abertura</label>
                         <input type="date" name="abertura" class="form-control" required>
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label class="form-label for="observacao">Observações</label>
-                        <textarea name="observacao" cols="30" rows="10" class="form-control" required></textarea>
+                        <label class="form-label" for="observacao">Observações</label>
+                        <textarea name="observacao" cols="30" rows="10" class="form-control"></textarea>
                     </div>
 
                 </div>
@@ -71,7 +73,7 @@
 
 <!-- Modal Detalhes-->
 @foreach ($ordems as $ordem)
-    <div class="modal fade bg-white viewOrdemServico" id="viewOrdemServico{{$ordem->id}}" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade bg-white viewOrdemServico" data-bs-backdrop="static" id="viewOrdemServico{{$ordem->id}}" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg bg-light">
             <div class="modal-content">
                 <div class="modal-body row g-3">

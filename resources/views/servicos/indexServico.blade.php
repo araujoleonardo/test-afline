@@ -39,6 +39,15 @@
             e.preventDefault();
             var form = $(this).serialize();
             var url = $(this).attr('action');
+            let nome = $("#nomeServicoAdd").val();
+
+            const spans  = document.querySelectorAll('.span-addServico');
+
+            if (nome.length < 3) {
+                document.getElementById("nomeServicoAdd").style.border = "2px solid red";
+                spans[0].style.display = 'block';
+                return false;
+            }
 
             $.ajax({
                 type: 'POST',
@@ -69,9 +78,9 @@
             var detalhes = $(this).data('detalhes');
 
             $('#editServiceModal').modal('show');
-            $('#name').val(nome);
-            $('#status').val(status);
-            $('#detalhes').val(detalhes);
+            $('#nomeServicoEdit').val(nome);
+            $('#statusEdit').val(status);
+            $('#detalhesEdit').val(detalhes);
             $('#idService').val(id);
         });
 
@@ -79,6 +88,15 @@
             e.preventDefault();
             var form = $(this).serialize();
             var url = $(this).attr('action');
+            let nome = $("#nomeServicoEdit").val();
+
+            const spans  = document.querySelectorAll('.span-editServico');
+
+            if (nome.length < 3) {
+                document.getElementById("nomeServicoEdit").style.border = "2px solid red";
+                spans[0].style.display = 'block';
+                return false;
+            }
 
             $.post(url, form, function(data) {
                 $('#editServiceModal').modal('hide');

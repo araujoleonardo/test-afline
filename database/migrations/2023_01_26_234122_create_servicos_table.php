@@ -15,9 +15,9 @@ class CreateServicosTable extends Migration
     {
         Schema::create('servicos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
+            $table->string('nome')->nullable();
             $table->text('detalhes');
-            $table->enum('status', ['Ativo', 'Inativo'])->default('Ativo');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

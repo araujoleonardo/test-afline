@@ -1,5 +1,5 @@
 <!-- Modal cadastrar-->
-<div class="modal fade" id="addnewService" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="addnewService" data-bs-backdrop="static" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,28 +9,27 @@
             <form action="{{ route('storeServicos') }}" id="addFormService">
                 @csrf
                 <div class="modal-body row g-3">
+
                     <div class="mb-3 col-md-8">
                         <label for="nome" class="form-label">Nome do serviço</label>
-                        <input type="text" name="nome" class="form-control" required>
+                        <input type="text" name="nome" id="nomeServicoAdd" class="form-control">
+                        <span class="span-addServico">Mínimo 3 caracteres</span>
                     </div>
+
                     <div class="mb-3 col-md-4">
-                        <label for="status" class="form-label">Status</label>
-                        <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
-                            <option value="Inativo" @if (old('status') == 'Inativo') selected @endif>
-                                Inativo
-                            </option>
-                            <option value="Ativo" @if (old('status') == 'Ativo') selected @endif>
-                                Ativo
-                            </option>
-                        </select>
-                        @error('status')
-                            <small class="invalid-feedback fw-bold">{{ $message }}</small>
-                        @enderror
+                        <label class="form-label" for="status">Status</label>
+                        <select class="form-select @error('status') is-invalid @enderror" name="status" id="statusAdd" required>
+                            <option value="" selected>Selecione o status</option>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                        </select> 
                     </div>
+
                     <div class="mb-3 col-md-12">
                         <label for="detalhes" class="form-label">Detalhes do serviço</label>
-                        <textarea name="detalhes" cols="30" rows="10" class="form-control" required></textarea>
+                        <textarea name="detalhes" cols="30" rows="10" id="detalhesAdd" class="form-control"></textarea>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -43,7 +42,7 @@
 
 
 <!-- Modal editar-->
-<div class="modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="editServiceModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -54,28 +53,27 @@
                 @csrf
                 <div class="modal-body row g-3">
                     <input type="hidden" id="idService" name="id">
+
                     <div class="mb-3 col-md-8">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" name="nome" id="name" class="form-control" required>
+                        <input type="text" name="nome" id="nomeServicoEdit" class="form-control">
+                        <span class="span-editServico">Mínimo 3 caracteres</span>
                     </div>
+                    
                     <div class="mb-3 col-md-4">
-                        <label for="status" class="form-label" id="status">Status</label>
-                        <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
-                            <option value="Inativo" @if (old('status') == 'Inativo') selected @endif>
-                                Inativo
-                            </option>
-                            <option value="Ativo" @if (old('status') == 'Ativo') selected @endif>
-                                Ativo
-                            </option>
-                        </select>
-                        @error('status')
-                            <small class="invalid-feedback fw-bold">{{ $message }}</small>
-                        @enderror
-                    </div>
+                        <label class="form-label" for="status">Status</label>
+                        <select class="form-select @error('status') is-invalid @enderror" name="status" id="statusEdit" required>
+                            <option value="" selected>Selecione o status</option>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                        </select> 
+                    </div>                         
+
                     <div class="mb-3 col-md-12">
                         <label for="detalhes" class="form-label">Detalhes do serviço</label>
-                        <textarea name="detalhes" id="detalhes" cols="30" rows="10" class="form-control" required></textarea>
+                        <textarea name="detalhes" id="detalhesEdit" cols="30" rows="10" class="form-control" required></textarea>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

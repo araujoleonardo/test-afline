@@ -35,8 +35,69 @@
         //Função salvar
         $('#addForm').on('submit', function(e){
             e.preventDefault();
-            var form = $(this).serialize();
-            var url = $(this).attr('action');
+            let form = $(this).serialize();
+            let url = $(this).attr('action');
+            let nome = $("#nomeAdd").val();
+            let email = $("#emailAdd").val();
+            let telefone = $("#telefoneAdd").val();
+            let estado = $("#estadoAdd").val();
+            let cidade = $("#cidadeAdd").val();
+            let cep = $("#cepAdd").val();
+            let bairro = $("#bairroAdd").val();
+            let rua = $("#ruaAdd").val();
+            let numero = $("#numeroAdd").val();
+            const spans  = document.querySelectorAll('.span-required');
+
+            if (nome.length < 3) {
+                document.getElementById("nomeAdd").style.border = "2px solid red";
+                spans[0].style.display = 'block';
+                return false;
+            }
+
+            let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("emailAdd").style.border = "2px solid red";               
+                spans[1].style.display = 'block';                
+                return false;
+            }
+
+            let telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+            if (!telefoneRegex.test(telefone)) {
+                document.getElementById("telefoneAdd").style.border = "2px solid red";
+                spans[2].style.display = 'block';                
+                return false;
+            }
+
+            if (estado.length > 2) {
+                document.getElementById("estadoAdd").style.border = "2px solid red";
+                spans[3].style.display = 'block';                
+                return false;
+            }
+
+            if (cidade.length < 3) {
+                document.getElementById("cidadeAdd").style.border = "2px solid red";
+                spans[4].style.display = 'block';                
+                return false;
+            }
+
+            let cepRegex = /^\d{5}-\d{3}$/;
+            if (!cepRegex.test(cep)) {
+                document.getElementById("cepAdd").style.border = "2px solid red";               
+                spans[5].style.display = 'block';                
+                return false;
+            }
+
+            if (bairro.length < 3) {
+                document.getElementById("bairroAdd").style.border = "2px solid red";
+                spans[6].style.display = 'block';                
+                return false;
+            }
+
+            if (rua.length < 3) {
+                document.getElementById("ruaAdd").style.border = "2px solid red";
+                spans[7].style.display = 'block';                
+                return false;
+            }
 
             $.ajax({
                 type: 'POST',
@@ -61,34 +122,95 @@
         //Função editar
         $(document).on('click', '#editClient', function(e){
             e.preventDefault();
-            var id = $(this).data('id');
-            var nome = $(this).data('nome');
-            var email = $(this).data('email');
-            var telefone = $(this).data('telefone');
-            var estado = $(this).data('estado');
-            var cidade = $(this).data('cidade');
-            var cep = $(this).data('cep');
-            var bairro = $(this).data('bairro');
-            var rua = $(this).data('rua');
-            var numero = $(this).data('numero');
+            let id = $(this).data('id');
+            let nome = $(this).data('nome');
+            let email = $(this).data('email');
+            let telefone = $(this).data('telefone');
+            let estado = $(this).data('estado');
+            let cidade = $(this).data('cidade');
+            let cep = $(this).data('cep');
+            let bairro = $(this).data('bairro');
+            let rua = $(this).data('rua');
+            let numero = $(this).data('numero');
 
             $('#editClientModal').modal('show');
-            $('#nome').val(nome);
-            $('#email').val(email);
-            $('#telefone').val(telefone);
-            $('#estado').val(estado);
-            $('#cidade').val(cidade);
-            $('#cep').val(cep);
-            $('#bairro').val(bairro);
-            $('#rua').val(rua);
-            $('#numero').val(numero);
+            $('#nomeEdit').val(nome);
+            $('#emailEdit').val(email);
+            $('#telefoneEdit').val(telefone);
+            $('#estadoEdit').val(estado);
+            $('#cidadeEdit').val(cidade);
+            $('#cepEdit').val(cep);
+            $('#bairroEdit').val(bairro);
+            $('#ruaEdit').val(rua);
+            $('#numeroEdit').val(numero);
             $('#idCliente').val(id);
         });
 
         $('#editFormClient').on('submit', function(e){
             e.preventDefault();
-            var form = $(this).serialize();
-            var url = $(this).attr('action');
+            let form = $(this).serialize();
+            let url = $(this).attr('action');
+            let nome = $("#nomeEdit").val();
+            let email = $("#emailEdit").val();
+            let telefone = $("#telefoneEdit").val();
+            let estado = $("#estadoEdit").val();
+            let cidade = $("#cidadeEdit").val();
+            let cep = $("#cepEdit").val();
+            let bairro = $("#bairroEdit").val();
+            let rua = $("#ruaEdit").val();
+            let numero = $("#numeroEdit").val();
+            const spans  = document.querySelectorAll('.span-required-edit');
+
+            if (nome.length < 3) {
+                document.getElementById("nomeEdit").style.border = "2px solid red";
+                spans[0].style.display = 'block';
+                return false;
+            }
+
+            let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("emailEdit").style.border = "2px solid red";               
+                spans[1].style.display = 'block';                
+                return false;
+            }
+
+            let telefoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+            if (!telefoneRegex.test(telefone)) {
+                document.getElementById("telefoneEdit").style.border = "2px solid red";
+                spans[2].style.display = 'block';                
+                return false;
+            }
+
+            if (estado.length > 2) {
+                document.getElementById("estadoEdit").style.border = "2px solid red";
+                spans[3].style.display = 'block';                
+                return false;
+            }
+
+            if (cidade.length < 3) {
+                document.getElementById("cidadeEdit").style.border = "2px solid red";
+                spans[4].style.display = 'block';                
+                return false;
+            }
+
+            let cepRegex = /^\d{5}-\d{3}$/;
+            if (!cepRegex.test(cep)) {
+                document.getElementById("cepEdit").style.border = "2px solid red";               
+                spans[5].style.display = 'block';                
+                return false;
+            }
+
+            if (bairro.length < 3) {
+                document.getElementById("bairroEdit").style.border = "2px solid red";
+                spans[6].style.display = 'block';                
+                return false;
+            }
+
+            if (rua.length < 3) {
+                document.getElementById("ruaEdit").style.border = "2px solid red";
+                spans[7].style.display = 'block';                
+                return false;
+            }
 
             $.post(url, form, function(data) {
                 $('#editClientModal').modal('hide');
@@ -106,7 +228,7 @@
         //Função deletar
         $(document).on('click', '#deleteClient', function(event){
             event.preventDefault();
-            var id = $(this).data('id');
+            let id = $(this).data('id');
             Swal.fire({
                 title: 'Tem certeza?',
                 text: "Você não poderá reverter isso!",
