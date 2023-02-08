@@ -6,11 +6,11 @@ Aplicação desenvolvida em Laravel da versão 5.8 + PHP 7.2 + MySQL 5
 
 ### Clonando o projeto
 ```
-git clone git@github.com:seuprojeto
+git clone https://github.com/araujoleonardo/test-afline.git
 ```
 ### Acesse o projeto
 ```
-cd seuprojeto
+cd test-afline
 ```
 ### Instale as dependências e o framework
 composer install --no-scripts
